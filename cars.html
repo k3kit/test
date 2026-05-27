@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог автомобилей - AutoDrive</title>
+</head>
+
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand text-white fw-bold" href="/">
+                <i class="bi bi-speedometer2 me-2"></i>AutoDrive
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/cars.html">Автомобили</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#services">Услуги</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#contact">Контакты</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-5">
+        <h1 class="text-center mb-5 fw-bold">Наш автопарк</h1>
+
+        <!-- Фильтрация -->
+        <div class="row mb-4">
+            <div class="col-md-4 mx-auto">
+                <select class="form-select" id="carFilter">
+                    <option value="all">Все автомобили</option>
+                    <option value="sport">Спорткары</option>
+                    <option value="luxury">Люкс</option>
+                    <option value="electric">Электромобили</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row g-4" id="carsContainer">
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white py-5 mt-5">
+        <div class="container">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2024 AutoDrive. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="carModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Детали автомобиля</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import './src/style.css'
+        import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+        import * as bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js'
+
+        const cars = [
+            { id: 1, name: 'Lamborghini Huracan', price: 'от 2000000', type: 'sport', image: './public/Lamborghini_Huracan_20150525_7811.jpg', description: 'Итальянский суперкар с неповторимым дизайном и мощным двигателем V10.' },
+            { id: 2, name: 'Ferrari F8 Tributo', price: 'от 2800000', type: 'sport', image: './public/2021_Ferrari_F8_Tributo.jpg', description: 'Икона итальянского автопрома с потрясающей динамикой.' },
+            { id: 3, name: 'Porsche 911 Turbo S', price: 'от 2030000', type: 'sport', image: './public/sport-car-with-black-white-autotuning-driving-forest.jpg', description: 'Немецкое качество и невероятная управляемость.' },
+            { id: 4, name: 'Mercedes-Benz S-Class', price: 'от 1100000', type: 'luxury', image: './public/Mercedes-Benz_S_.jpg', description: 'Воплощение роскоши и комфорта.' },
+            { id: 5, name: 'BMW i8', price: 'от 5000000', type: 'electric', image: './public/2016_BMW_i8.jpg', description: 'Гибридный спорткар будущего.' },
+            { id: 6, name: 'Audi R8', price: 'от 70100000', type: 'sport', image: './public/Audi_R8_V10.jpg', description: 'Немецкий суперкар с характером.' }
+        ]
+
+        function displayCars(filter = 'all') {
+            const container = document.getElementById('carsContainer')
+            const filteredCars = filter === 'all' ? cars : cars.filter(car => car.type === filter)
+
+            container.innerHTML = filteredCars.map(car => `
+                <div class="col-md-6 col-lg-4">
+                    <div class="car-card card h-100 border-0 shadow-sm">
+                        <img src="${car.image}" class="card-img-top" alt="${car.name}">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">${car.name}</h5>
+                            <p class="card-text text-primary h5">${car.price}</p>
+                            <p class="card-text">${car.description}</p>
+                            <button class="btn btn-dark" onclick="showCarDetails('${car.name}', '${car.price}', '${car.description}', '${car.image}')">
+                                Подробнее
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('')
+        }
+
+        document.getElementById('carFilter').addEventListener('change', (e) => {
+            displayCars(e.target.value)
+        })
+
+        window.showCarDetails = (carName, carPrice, carDescription, carImage) => {
+            const modalBody = document.querySelector('#carModal .modal-body')
+            modalBody.innerHTML = `
+                <img src="${carImage}" class="img-fluid rounded mb-3" alt="${carName}">
+                <h4>${carName}</h4>
+                <p class="text-primary h5 mb-3">${carPrice}</p>
+                <p>${carDescription}</p>
+                <h5>Характеристики:</h5>
+                <ul>
+                    <li>Двигатель: 2.0 л Turbo</li>
+                    <li>Мощность: 250 л.с.</li>
+                    <li>Разгон 0-100 км/ч: 6.5 сек</li>
+                    <li>Расход топлива: 8.5 л/100 км</li>
+                </ul>
+            `
+            new bootstrap.Modal(document.getElementById('carModal')).show()
+        }
+
+        displayCars()
+
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar')
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled')
+            } else {
+                navbar.classList.remove('navbar-scrolled')
+            }
+        })
+    </script>
+</body>
+
+</html>
