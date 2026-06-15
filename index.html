@@ -4,15 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="/dist/styles.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="./src/style.css" rel="stylesheet">
   <title>AutoDriveSaratov - Премиум автомобили</title>
 </head>
 
 <body class="bg-light">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand text-white fw-bold" href="/">
+      <a class="navbar-brand text-white fw-bold" href="./index.html">
         <i class="bi bi-speedometer2 me-2"></i>AutoDrive
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -21,10 +22,10 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link active" href="/">Главная</a>
+            <a class="nav-link active" href="./index.html">Главная</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/cars.html">Автомобили</a>
+            <a class="nav-link" href="./cars.html">Автомобили</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#services">Услуги</a>
@@ -44,7 +45,7 @@
           <h1 class="display-4 fw-bold mb-4">Откройте мир премиальных автомобилей</h1>
           <p class="lead mb-4">Эксклюзивные автомобили от лучших мировых производителей. Тест-драйв, лизинг, страховка -
             всё в одном месте.</p>
-          <button class="btn btn-light btn-lg me-3" onclick="location.href='/cars.html'">
+          <button class="btn btn-light btn-lg me-3" onclick="location.href='./cars.html'">
             <i class="bi bi-search me-2"></i>Выбрать авто
           </button>
           <button class="btn btn-outline-light btn-lg">
@@ -94,7 +95,7 @@
             <p class="card-text text-primary h5">от 1000000 руб</p>
             <p class="card-text">5.2 л V10, 610 л.с., разгон 0-100 за 3.2 сек</p>
             <button class="btn btn-dark"
-              onclick="showCarDetails('Lamborghini Huracan', 'от 1000000 руб', 'Итальянский суперкар с неповторимым дизайном и мощным двигателем V10.', 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400')">
+              onclick="showCarDetails('Lamborghini Huracan', 'от 1000000 руб', 'Итальянский суперкар с неповторимым дизайном и мощным двигателем V10.', './public/Lamborghini_Huracan_20150525_7811.jpg')">
               Подробнее
             </button>
           </div>
@@ -108,7 +109,7 @@
             <p class="card-text text-primary h5">от 2800000 руб</p>
             <p class="card-text">3.9 л V8, 720 л.с., разгон 0-100 за 2.9 сек</p>
             <button class="btn btn-dark"
-              onclick="showCarDetails('Ferrari F8 Tributo', 'от 2800000 руб', 'Икона итальянского автопрома с потрясающей динамикой.', 'https://images.unsplash.com/photo-1553440569-bcc63803a83d?w=400')">
+              onclick="showCarDetails('Ferrari F8 Tributo', 'от 2800000 руб', 'Икона итальянского автопрома с потрясающей динамикой.', './public/2021_Ferrari_F8_Tributo.jpg')">
               Подробнее
             </button>
           </div>
@@ -122,7 +123,7 @@
             <p class="card-text text-primary h5">от 2030000 руб</p>
             <p class="card-text">3.7 л Flat-6, 650 л.с., разгон 0-100 за 2.7 сек</p>
             <button class="btn btn-dark"
-              onclick="showCarDetails('Porsche 911 Turbo S', 'от 2030000 руб', 'Немецкое качество и невероятная управляемость.', 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400')">
+              onclick="showCarDetails('Porsche 911 Turbo S', 'от 2030000 руб', 'Немецкое качество и невероятная управляемость.', './public/GIMS_2019,_Le_Grand-Saconnex_(GIMS9988).jpg')">
               Подробнее
             </button>
           </div>
@@ -270,7 +271,8 @@
     </div>
   </div>
 
-  <script type="module" src="/src/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./src/main.js"></script>
 </body>
 
 </html>

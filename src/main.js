@@ -1,7 +1,3 @@
-import './style.css'
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-import * as bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js'
-
 window.addEventListener('scroll', () => {
   const navbar = document.querySelector('.navbar')
   if (window.scrollY > 50) {
@@ -111,5 +107,6 @@ window.showCarDetails = (carName, carPrice, carDescription, carImage) => {
       <li>Расход топлива: 8.5 л/100 км</li>
     </ul>
   `
-  new bootstrap.Modal(document.getElementById('carModal')).show()
+  const modal = new bootstrap.Modal(document.getElementById('carModal'))
+  modal.show()
 }
